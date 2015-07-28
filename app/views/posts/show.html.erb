@@ -25,8 +25,69 @@
     <h4>by <%= link_to @post.user.full_name, @post.user %></h4>
     <p><%= @post.contents %></p>
   </div>
+
+  <div class="col-md-8 col-md-offset-2">
+    <% if @comment.errors.any? %>
+      <% @comment.errors.full_messages.each do |message| %>
+        <div class="alert alert-dismissable alert-danger">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <!-- Responsive panel example -->
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Add Comment</h3>
+          </div>
+          <div class="panel-body">
+            <%= form_tag comments_url, :method => "post", :class => "form-horizontal" do %>
+              <!-- Label and input for user_id -->
+              <div class="form-group">
+                <label for="user_id" class="col-sm-2 control-label">
+                  User
+                </label>
+                <div class="col-sm-10">
+                  <%= select_tag :user_id, options_from_collection_for_select(User.all, :id, :full_name, @comment.user_id) %>
+                  <!-- <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%#= @comment.user_id %>"> -->
+                </div>
+              </div>
+
+              <!-- Label and input for post_id -->
+              <input type="hidden" name="post_id" value="<%= @post.id %>">
+
+              <!-- Label and input for contents -->
+              <div class="form-group">
+                <label for="contents" class="col-sm-2 control-label">
+                </label>
+                <div class="col-sm-10">
+                  <textarea id="contents" name="contents" placeholder="Contents" class="form-control" rows="3"><%= @comment.contents %></textarea>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <input type="submit" value="Create Comment" class="btn btn-success">
+                  or
+                  <a href="/comments">Cancel</a>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8 col-md-offset-2">
+    <% @post.comments.each do |comment| %>
+      <h4><%= comment.user.full_name %></h4>
+      <p><%= comment.contents %></p>
+      <hr>
+    <% end %>
+  </div>
 </div>
 
-<!-- Users should be able to: -->
-<!-- 1. add comments with a form -->
-<!-- 2. see a list of comments with some user info -->
