@@ -22,6 +22,7 @@
     </div>
   </div>
   <div class="col-md-8 col-md-offset-2">
+    <h4>by <%= link_to @post.user.full_name, @post.user %></h4>
     <p><%= @post.contents %></p>
   </div>
 </div>

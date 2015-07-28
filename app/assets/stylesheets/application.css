@@ -50,3 +50,18 @@
   .article-list {
     padding-top: 72px;
   }
+
+
+  .user-heading {
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 0.2em;
+  }
+
+  .user-heading small {
+    font-size: 0.5em;
+  }
+
+  .media {
+    padding-top: 0.7em;
+    padding-bottom: 0.9em;
+  }

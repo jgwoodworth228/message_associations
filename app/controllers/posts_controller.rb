@@ -12,6 +12,7 @@ class PostsController < ApplicationController
     @post.title = params[:title]
     @post.image_url = params[:image_url]
     @post.contents = params[:contents]
+    @post.user_id = params[:user_id]
     @post.save
 
     redirect_to "/posts/#{@post.id}"
@@ -26,6 +27,7 @@ class PostsController < ApplicationController
     @post.title = params[:title]
     @post.image_url = params[:image_url]
     @post.contents = params[:contents]
+    @post.user_id = params[:user_id]
     @post.save
 
     redirect_to "/posts/#{@post.id}"

@@ -1,0 +1,20 @@
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h1 class="user-heading"><%= @user.full_name %> <small><%= @user.email %></small></h1>
+    <% @user.posts.each do |post| %>
+      <div class="media">
+        <div class="media-left">
+          <a href="/posts/<%= post.id %>">
+            <img class="media-object" src="<%= post.image_url %>" alt="<%= post.title %>" width="100px">
+          </a>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading"><%= post.title %></h4>
+          <%= truncate(post.contents, length: 140) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+

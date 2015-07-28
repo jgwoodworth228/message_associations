@@ -14,6 +14,10 @@
     <textarea type="text" id="contents" name="contents"></textarea>
   </div>
   <div>
+    <label for="user_id">User:</label><br>
+    <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :full_name)) %>
+  </div>
+  <div>
     <input type="submit">
   </div>
 </form>

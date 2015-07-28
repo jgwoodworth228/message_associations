@@ -13,6 +13,11 @@
     <label for="contents">contents:</label><br>
     <textarea type="text" id="contents" name="contents"><%= @post.contents %></textarea>
   </div>
+
+  <div>
+    <label for="user_id">User:</label><br>
+    <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :full_name, @post.user_id)) %>
+  </div>
   <div>
     <input type="submit">
   </div>
