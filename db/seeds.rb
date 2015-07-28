@@ -6,7 +6,18 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+User.destroy_all
+3.times do
+  u = User.new
+  u.first_name = Faker::Name.first_name #=> "Kaci"
+  u.last_name = Faker::Name.last_name #=> "Kaci"
+  u.email = Faker::Internet.email u.first_name
+  u.save
+end
+puts "#{User.count} users in the database"
 
+
+Post.destroy_all
 posts = [
   {
     title: "To Invent the Future, You Must Understand the Past",
@@ -52,6 +63,16 @@ It put the city on edge, and as violence unfolded in the afternoon as teenagers 
 ]
 
 posts.each do |post|
-  Post.create!(post)
+  p = Post.new
+  p.title = post[:title]
+  p.image_url = post[:image_url]
+  p.contents = post[:contents]
+  user = User.offset(rand(User.count)).first
+  p.user_id = user.id
+  p.save
 end
 puts "#{Post.count} posts in the database"
+
+
+
+
